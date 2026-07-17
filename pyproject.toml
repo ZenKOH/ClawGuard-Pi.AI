@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clawguard-pi-ai"
+version = "0.1.0"
+description = "Permissioned Raspberry Pi control plane for OpenClaw-style edge agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Zen KOH" }]
+dependencies = [
+  "fastapi>=0.111",
+  "uvicorn[standard]>=0.30",
+  "pydantic>=2.7"
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.2", "httpx>=0.27", "ruff>=0.5"]
+pi = ["gpiozero>=2.0", "picamera2>=0.3.18"]
+
+[tool.setuptools]
+packages = ["backend", "simulator"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
