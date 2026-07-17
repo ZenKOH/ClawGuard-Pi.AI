@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ClawGuard-Pi.AI</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Raspberry Pi · OpenClaw · Edge-agent safety</p>
+      <h1>ClawGuard-Pi.AI</h1>
+      <p class="lede">A permissioned control plane where agents propose actions and the Raspberry Pi executes only policy-approved, audited, bounded workflows.</p>
+    </div>
+    <div class="status-card"><span id="modeBadge" class="badge">loading</span><strong id="auditCount">0</strong><small>audit events</small></div>
+  </header>
+  <main class="app-shell">
+    <section class="toolbar card">
+      <button id="loadDemo">Load demo events</button>
+      <button id="refreshAudit">Refresh audit</button>
+      <button id="exportAudit">Export audit JSON</button>
+      <button id="clearAudit" class="danger">Clear audit</button>
+    </section>
+    <section class="grid">
+      <article class="card propose-card">
+        <h2>Propose action</h2>
+        <p>Submit an agent proposal. The policy engine decides whether to execute, block or request approval.</p>
+        <label>Action <select id="actionSelect"></select></label>
+        <label>Goal <textarea id="goalInput">The agent detected a parcel-like object and wants to capture a still image.</textarea></label>
+        <label>Parameters JSON <textarea id="paramsInput">{"reason":"parcel-detection-demo"}</textarea></label>
+        <button id="submitProposal">Submit proposal</button>
+      </article>
+      <article class="card"><h2>Registered actions</h2><div id="actionsList" class="actions-list"></div></article>
+    </section>
+    <section class="grid">
+      <article class="card"><h2>Pending approvals</h2><p>Human approval is required before medium/high-risk actions execute.</p><div id="pendingList" class="audit-list compact"></div></article>
+      <article class="card"><h2>Audit log</h2><p>Every proposal, block, approval and execution is written to JSONL.</p><div id="auditList" class="audit-list"></div></article>
+    </section>
+    <section class="card"><h2>Demo workflows</h2><div class="demo-grid"><div><strong>Smart home</strong><span>LED-only safe output by default.</span></div><div><strong>Parcel detection</strong><span>Camera event → capture → notification proposal.</span></div><div><strong>Rehab observer</strong><span>Clinician-reviewable dose and carryover summary.</span></div><div><strong>Industrial monitor</strong><span>Sensor reads and anomaly flags without uncontrolled actuation.</span></div></div></section>
+  </main>
+  <footer><p>Prototype only. Do not use as a medical device, security controller or autonomous industrial control system.</p></footer>
+  <script src="/static/app.js" type="module"></script>
+</body>
+</html>
